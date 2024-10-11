@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+const repoName = "https://panasiuk18.github.io/reactCalendar1/";
+
 export default defineConfig({
   plugins: [react()],
-})
+  base: "/reactCalendar1/",
+});
