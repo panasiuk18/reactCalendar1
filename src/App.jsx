@@ -66,6 +66,16 @@ const ButtonsWrapper = styled("div")`
   justify-content: flex-end;
 `;
 
+const ButtonWrapper = styled("button")`
+  color: ${(props) => (props.danger === "true" ? "#f00" : "#27282A")};
+  border: 1px solid ${(props) => (props.danger === "true" ? "#f00" : "#27282A")};
+  border-radius: 2px;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 2px;
+  }
+`;
+
 const url = "http://localhost:3001";
 const totalDays = 42;
 const defaultEvent = {
@@ -102,7 +112,7 @@ function App() {
   const openFormHandler = (methodName, eventForUpdate, dayItem) => {
     console.log("onDoubleClick", methodName);
     setShowForm(true);
-    setEvent(eventForUpdate || { ...defaultEvent, date: dayItem.format("X") }); // todo
+    setEvent(eventForUpdate || { ...defaultEvent, date: dayItem.format("X") });
     setMethod(methodName);
   };
 
@@ -182,10 +192,19 @@ function App() {
               placeholder="Description"
             />
             <ButtonsWrapper>
-              <button onClick={cancelButtonHandler}>Cancel</button>
-              <button onClick={eventFetchHandler}>{method}</button>
+              <ButtonWrapper onClick={cancelButtonHandler}>
+                Cancel
+              </ButtonWrapper>
+              <ButtonWrapper onClick={eventFetchHandler}>
+                {method}
+              </ButtonWrapper>
               {method === "Update" ? (
-                <button onClick={removeEventHandler}>Remove</button>
+                <ButtonWrapper
+                  danger={method === "Update" ? "true" : undefined}
+                  onClick={removeEventHandler}
+                >
+                  Remove
+                </ButtonWrapper>
               ) : null}
             </ButtonsWrapper>
           </FormWrapper>

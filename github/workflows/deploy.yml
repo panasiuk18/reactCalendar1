@@ -1,8 +1,7 @@
-# Simple workflow for deploying static content to GitHub Pages
+
 name: Deploy static content to Pages
 
 on:
-  # Запускается при пуше на ветку main
   push:
     branches: ['main']
 
@@ -15,13 +14,12 @@ permissions:
   pages: write
   id-token: write
 
-# Разрешить одно параллельное развертывание
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  # Задача для развертывания
+
   deploy:
     environment:
       name: github-pages
@@ -44,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'  # Укажите путь к вашей папке с собранными файлами
+          path: './dist'  
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
